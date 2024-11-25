@@ -45,7 +45,7 @@ module RailsSseManager
             # 2. process pg noticifactions
             # returns the channel name if message received within timeout, else nil
             conn.raw_connection.wait_for_notify(30) do |_channel, _pid, payload|
-              message = Message.from_json(JSON.parse(payload.to_s))
+              message = Event.from_json(JSON.parse(payload.to_s))
 
               io_for_each_stream(streams) do |stream|
                 stream.write(message)
