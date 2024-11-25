@@ -15,15 +15,15 @@ module RailsSseManager
 
     private
 
-    def send_headers(stream)
+    def send_headers(io)
       headers = [
         'HTTP/1.1 200 OK',
         'Content-Type: text/event-stream',
         'Connection: keep-alive'
       ]
-      stream.write(headers.map { |header| "#{header}\r\n" }.join)
-      stream.write("\r\n")
-      stream.flush
+      io.write(headers.map { |header| "#{header}\r\n" }.join)
+      io.write("\r\n")
+      io.flush
     rescue StandardError => e
       Rails.logger.error e
       stream.close
