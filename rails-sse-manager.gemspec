@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description = 'Enables many connections to Server Sent Events with rails hijacking. Allows sending data from anywhere in the application using postgres notifications'
   spec.homepage = 'https://github.com/de-sopi/rails-sse-manager'
   spec.license = 'MIT'
-  spec.required_ruby_version = '>= 2.7.0'
+  spec.required_ruby_version = '>= 3.0.0'
 
   # spec.metadata['allowed_push_host'] = "TODO: Set to your gem server 'https://example.com'"
 
