@@ -3,7 +3,7 @@
 module RailsSseManager
   module CreateStream
     def create_stream(stream_id)
-      raise RailsSseManagerError('Rack Hijacking not supported') unless env['rack.hijack']
+      raise RailsSseManagerError('Rack Hijacking not supported') unless request.env['rack.hijack']
 
       request.env['rack.hijack'].call
       io = request.env['rack.hijack_io']
