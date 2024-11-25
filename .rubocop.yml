@@ -1,0 +1,18 @@
+AllCops:
+  Exclude:
+    - 'config/*'
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Max: 30
+
+#Metrics/CyclomaticComplexity:
+#  Max: 10
+#
+#Metrics/PerceivedComplexity:
+#  Max: 10
+
+Metrics/MethodLength:
+  Max: 25
