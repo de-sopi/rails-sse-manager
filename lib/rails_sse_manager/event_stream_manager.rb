@@ -27,9 +27,7 @@ module RailsSseManager
     def start_thread
       @thread_alive = true
       Thread.new do
-        ActiveRecord::Base.connection_pool.with_connection do |conn|
-          conn.raw_connection.async_exec('LISTEN stream_events') # listen to data sent in the stream_events channel
-
+        NotificationAdapter.call.subscribe do |event_subscription|
           streams = []
 
           loop do
@@ -42,10 +40,10 @@ module RailsSseManager
             end
             @thread.exit if streams.empty?
 
-            # 2. process pg noticifactions
+            # 2. process noticifactions
             # returns the channel name if message received within timeout, else nil
-            conn.raw_connection.wait_for_notify(30) do |_channel, _pid, payload|
-              message = Event.from_json(JSON.parse(payload.to_s))
+            NotificationAdapter.call.process_event(event_subscription) do |data|
+              message = Event.from_json(JSON.parse(data.to_s))
 
               io_for_each_stream(streams) do |stream|
                 stream.write(message)
