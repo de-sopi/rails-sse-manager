@@ -4,8 +4,6 @@ module RailsSseManager
   class Stream
     attr_accessor :io, :id
 
-    delegate :close, :closed?, to: :@io
-
     def initialize(io, id)
       @io = io
       @id = id
@@ -24,6 +22,14 @@ module RailsSseManager
 
     def check_if_alive
       io.write("event: heartbeat\ndata:alive\n\n")
+    end
+
+    def close
+      @io.close
+    end
+
+    def closed?
+      @io.closed?
     end
   end
 end
