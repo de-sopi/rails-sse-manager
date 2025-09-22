@@ -28,7 +28,7 @@ module RailsSseManager
       @thread_alive = true
       Thread.new do
         ActiveRecord::Base.connection_pool.with_connection do |conn|
-          conn.raw_connection.async_exec('LISTEN stream_events') # listen to data sent in the chat_messages_channel
+          conn.raw_connection.async_exec('LISTEN stream_events') # listen to data sent in the stream_events channel
 
           streams = []
 
