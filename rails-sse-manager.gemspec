@@ -31,6 +31,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'pg'
   spec.add_dependency 'rails', '>= 6.0'
+  spec.add_dependency 'require_all'
 
   # Uncomment to register a new dependency of your gem
   # spec.add_dependency "example-gem", "~> 1.0"
