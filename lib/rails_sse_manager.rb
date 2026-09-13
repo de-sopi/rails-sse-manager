@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'require_all'
-require_all 'lib'
+require_all __dir__
 
 module RailsSseManager
   class RailsSseManagerError < StandardError; end
