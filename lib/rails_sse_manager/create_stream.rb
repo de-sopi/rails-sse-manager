@@ -9,7 +9,7 @@ module RailsSseManager
       io = request.env['rack.hijack_io']
 
       send_headers(io)
-      stream = Stream.new(io, stream_id)
+      stream = RailsSseManager::Stream.new(io, stream_id)
       stream.move_to_stream_thread
     end
 

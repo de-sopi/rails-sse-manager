@@ -2,6 +2,10 @@
 
 module RailsSseManager
   class NotificationAdapter
+    def self.call
+      RailsSseManager::Config.new.notification_adapter.new
+    end
+
     def subscribe
       raise NotImplementedError
     end
@@ -14,12 +18,8 @@ module RailsSseManager
       raise NotImplementedError
     end
 
-    def call
-      RailsSseManager.config.notification_adapter.new
-    end
-
     def channel_name
-      @channel_name ||= RailsSseManager.config.channel_name
+      @channel_name ||= RailsSseManager::Config.new.channel_name
     end
   end
 end

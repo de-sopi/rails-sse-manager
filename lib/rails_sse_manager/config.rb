@@ -2,7 +2,7 @@
 
 module RailsSseManager
   class Config
-    attr_writer :notification_service, :channel_name
+    attr_accessor :notification_service, :channel_name
 
     # TODO: explain in Readme
     def initialize
