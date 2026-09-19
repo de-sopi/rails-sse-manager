@@ -10,6 +10,8 @@ module RailsSseManager
 
       send_headers(io)
       stream = RailsSseManager::Stream.new(io, stream_id)
+      # write the handshake event directly — don't round-trip through NOTIFY/LISTEN
+      io.write("event: connect\ndata: #{JSON.generate('connection confirmed')}\n\n")
       stream.move_to_stream_thread
     end
 
